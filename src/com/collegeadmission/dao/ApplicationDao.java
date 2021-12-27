@@ -88,11 +88,11 @@ public class ApplicationDao {
 		con.close();		
 	}
 	
-	public List<ApplicationDetails> showAllApplications()
+	public List<ApplicationDetails> showAllApplications() throws ClassNotFoundException, SQLException
     {
     	List<ApplicationDetails> applicationList = new ArrayList<ApplicationDetails>();
     	String showapplicationsquery="select * from application_details";
-    	Connection con = null;
+    	Connection con = ConnectionUtil.getDBConnect();
     	PreparedStatement ps;
     	try {
 			con = ConnectionUtil.getDBConnect();

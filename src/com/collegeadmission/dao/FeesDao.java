@@ -54,7 +54,7 @@ public class FeesDao {
     }
 
 	
-	public static void deleteFeesDetails (FeesDetails feesdetails) throws ClassNotFoundException, SQLException {
+	public void deleteFeesDetails (FeesDetails feesdetails) throws ClassNotFoundException, SQLException {
 		
 		String del="delete from fees_details where fees_id=?";
 		

@@ -58,6 +58,16 @@ public class CourseDetails {
 		this.courseType = courseType;
 		this.courseName = courseName;
 	}
+	public CourseDetails(int courseId2) {
+		// TODO Auto-generated constructor stub
+		this.courseId = courseId;
+	}
+	public CourseDetails(String courseType2, String courseName2, int courseId2) {
+		// TODO Auto-generated constructor stub
+		this.courseType=courseType;
+		this.courseName=courseName;
+		this.courseId=courseId;
+	}
 	
 	
 

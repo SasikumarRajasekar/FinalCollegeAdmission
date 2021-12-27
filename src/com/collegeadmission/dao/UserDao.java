@@ -15,7 +15,7 @@ import com.collegeadmission.model.UserDetails;
 	public class UserDao {
 		
 		public void userDetails(UserDetails userdetails) throws ClassNotFoundException, SQLException {
-			
+			System.out.println("dao");
 			String userQuery = "insert into user_details(User_Name,Email,Mobile_Number,User_Password) values(?,?,?,?)";
 
 			Connection con = ConnectionUtil.getDBConnect();
@@ -27,7 +27,7 @@ import com.collegeadmission.model.UserDetails;
 			pstmt.setLong(3,userdetails.getMobileNumber());
 			pstmt.setString(4,userdetails.getUserPassword());
 			
-
+			System.out.println(userdetails.getUserName()+userdetails.getEmail()+userdetails.getMobileNumber()+userdetails.getUserPassword());
 				
 				int result=pstmt.executeUpdate();
 				System.out.println("Registered Successfully");
@@ -78,7 +78,7 @@ import com.collegeadmission.model.UserDetails;
 	    {
 	    	List<UserDetails> userList = new ArrayList<UserDetails>();
 	    	String showusersquery="select * from user_details";
-	    	Connection con = null;
+	    	Connection con = ConnectionUtil.getDBConnect();
 	    	PreparedStatement ps;
 	    	try {
 				con = ConnectionUtil.getDBConnect();

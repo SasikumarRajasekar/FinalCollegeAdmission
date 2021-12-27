@@ -33,13 +33,14 @@ public class CoursesDao {
 	
 	public void updateCourses (CourseDetails coursedetails) throws ClassNotFoundException, SQLException {
     	
-    	String update="update course_details set course_type=?, course_name=? where course_id='"+CourseDetails.getCourseId()+"'";
+    	String update="update course_details set course_type=?, course_name=? where course_id=?";
     	
     	Connection con=ConnectionUtil.getDBConnect();
 		PreparedStatement ps=con.prepareStatement(update);
 		
 		ps.setString(1,CourseDetails.getCourseType());
 		ps.setString(2,CourseDetails.getCourseName());
+		ps.setInt(3, CourseDetails.getCourseId());
 		
 		int result=ps.executeUpdate();
 		System.out.println(result+ " is updated !!");
@@ -62,7 +63,7 @@ public class CoursesDao {
 		con.close();		
 	}
 
-	public List<CourseDetails> showAllUsers() throws ClassNotFoundException, SQLException
+	public List<CourseDetails> showAllCourses() throws ClassNotFoundException, SQLException
     {
     	List<CourseDetails> courseList = new ArrayList<CourseDetails>();
     	String showcoursesquery="select * from courses_details";

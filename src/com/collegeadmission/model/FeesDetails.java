@@ -13,31 +13,31 @@ public class FeesDetails {
 		return feesId;
 	}
 	public void setFeesId(int feesId) {
-		this.feesId = feesId;
+		FeesDetails.feesId = feesId;
 	}
 	public static int getCourseId() {
 		return courseId;
 	}
 	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+		FeesDetails.courseId = courseId;
 	}
 	public static int getAdmissionFees() {
 		return admissionFees;
 	}
 	public void setAdmissionFees(int admissionFees) {
-		this.admissionFees = admissionFees;
+		FeesDetails.admissionFees = admissionFees;
 	}
 	public static int getTuitionFees() {
 		return tuitionFees;
 	}
 	public void setTuitionFees(int tuitionFees) {
-		this.tuitionFees = tuitionFees;
+		FeesDetails.tuitionFees = tuitionFees;
 	}
 	public static int getExamFees() {
 		return examFees;
 	}
 	public void setExamFees(int examFees) {
-		this.examFees = examFees;
+		FeesDetails.examFees = examFees;
 	}
 	@Override
 	public int hashCode() {
@@ -52,8 +52,8 @@ public class FeesDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		FeesDetails other = (FeesDetails) obj;
-		return admissionFees == other.admissionFees && courseId == other.courseId && examFees == other.examFees
-				&& feesId == other.feesId && tuitionFees == other.tuitionFees;
+		return admissionFees == other.admissionFees && courseId == other.courseId && examFees == FeesDetails.examFees
+				&& feesId == other.feesId && tuitionFees == FeesDetails.tuitionFees;
 	}
 	public FeesDetails() {
 		super();
@@ -61,11 +61,19 @@ public class FeesDetails {
 	}
 	public FeesDetails(int feesId, int courseId, int admissionFees, int tuitionFees, int examFees) {
 		super();
-		this.feesId = feesId;
-		this.courseId = courseId;
-		this.admissionFees = admissionFees;
-		this.tuitionFees = tuitionFees;
-		this.examFees = examFees;
+		FeesDetails.feesId = feesId;
+		FeesDetails.courseId = courseId;
+		FeesDetails.admissionFees = admissionFees;
+		FeesDetails.tuitionFees = tuitionFees;
+		FeesDetails.examFees = examFees;
+	}
+	public FeesDetails(int feesId1) {
+		// TODO Auto-generated constructor stub
+		FeesDetails.feesId = feesId1;
+	}
+	public static int getFeesId1() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

@@ -27,8 +27,7 @@ public class TestMain {
 	System.out.println("\n1.Register\n2.Login\nEnter your choice");
 	int choice=Integer.parseInt(scan.nextLine());
 	UserDao UserDao=null;
-	
-	switch(choice)
+		switch(choice)
 	{
 	case 1:
 	{
@@ -96,7 +95,8 @@ public class TestMain {
 		while(!UserPassword.matches("[A-Za-z@#$%!^&*0-9]{8,10}"));
 		
 		UserDetails userdetails=new UserDetails(UserName, email,Long.parseLong(tempMobile),UserPassword);
-		UserDao.userDetails(userdetails);
+		System.out.println("main"+UserName+ email+Long.parseLong(tempMobile)+UserPassword);
+		user.userDetails(userdetails);
 		break;
 		
 	}
@@ -114,13 +114,14 @@ public class TestMain {
 			System.out.println("Enter the registered password");
 		    AdminPassword = scan.nextLine();
 		    
-		    System.out.println("Login Successful"); 
+		    System.out.println("Login Successful");
+		    System.out.println("1.To Update User Details\n2.To Delete User Detis\n3.Show User Details\n4.To Update Application Details\n5.Delete Application Details\n6.Show Application Details\n7.Insert Course Details\n8.Update Course Details\n9.Delete Course Details\n10.Insert fees details\n11.update fees details\n12.delete fees details");
 		    System.out.println("Enter your choice");
 		    int adminchoice=Integer.parseInt(scan.nextLine());
 			switch(adminchoice) 
 		    {
 			case 1:
-			
+			UserDao user11 = new UserDao();
 			System.out.println("To Update user details");
 			System.out.println("Enter the user name ");
 			String userName=scan.nextLine();
@@ -131,10 +132,10 @@ public class TestMain {
 			System.out.println("Enter the user password");
 			String userPassword1=scan.nextLine();
             System.out.println("enter user id");
-            int userid = scan.nextInt();
+            int userid = Integer.parseInt(scan.nextLine());
             scan.nextLine();
 			UserDetails userdetails=new UserDetails(userid,userName,Email1,MobileNumber1,userPassword1);
-			UserDao.update(userdetails); 
+			user11.update(userdetails); 
 			System.out.println("User details updated");
 			break;
 			
@@ -146,7 +147,7 @@ public class TestMain {
 				System.out.println("Enter the id to delete ");
 				int UserId=Integer.parseInt(scan.nextLine());
 				UserDetails userdetails1=new UserDetails(UserId);
-				UserDao.deleteUser(userdetails1);
+				user2.deleteUser(userdetails1);
 				break;
 			
 			case 3:
@@ -202,7 +203,7 @@ public class TestMain {
      			int aadharNumber1=Integer.parseInt(scan.nextLine());
 				
 				ApplicationDetails applicationdetails=new ApplicationDetails(studentName1,fatherName1,dateofBirth,sslcMark1,hscMark1,address1,city1,pincode1,state1,nationality1,aadharNumber1);
-				ApplicationDao.updateApplication(applicationdetails); 
+				application.updateApplication(applicationdetails); 
 				System.out.println("Application details updated");
 				break;
 			
@@ -212,7 +213,7 @@ public class TestMain {
 				System.out.println("Enter the aadhar number to delete ");
 				int aadharNumber=Integer.parseInt(scan.nextLine());
 				ApplicationDetails applicationdetails1=new ApplicationDetails(aadharNumber);
-				ApplicationDao.deleteApplication(applicationdetails1);
+				application1.deleteApplication(applicationdetails1);
 				break;
 				
 			
@@ -234,7 +235,7 @@ public class TestMain {
 			String CourseType=null;
 			String CourseName=null;
 
-			CoursesDao CoursesDao = new CoursesDao();
+			CoursesDao insertcourses = new CoursesDao();
 			System.out.println("Details of Courses");
 			System.out.println("Enter the Course Id");
 			CourseId=Integer.parseInt(scan.nextLine());
@@ -245,25 +246,34 @@ public class TestMain {
 			CourseName=scan.nextLine();
 
 			CourseDetails coursedetails=new CourseDetails(CourseId,CourseType,CourseName);
-			CoursesDao.coursesDetails(coursedetails);
+			insertcourses.coursesDetails(coursedetails);
 	        break;
 			
 			
 			case 8:
 			
-			CoursesDao = new CoursesDao();
+			CoursesDao courses = new CoursesDao();
 			System.out.println("To Update Course Details");
 				
 			System.out.println("Enter the course type");
-			String courseType=scan.nextLine();
+		    String courseType=scan.nextLine();
 			System.out.println("Enter the course name");
 			String courseName=scan.nextLine();
+			System.out.println("Enter the course id");
+			int courseId=Integer.parseInt(scan.nextLine());
 
-			CourseDetails updatecourses=new CourseDetails();
-			updatecourses.setCourseType(courseType);
-			updatecourses.setCourseName(courseName);
-			CoursesDao.updateCourses(updatecourses);
+			CourseDetails updatecourses=new CourseDetails(courseType,courseName,courseId);
+			courses.updateCourses(updatecourses);
 			break;
+			
+			case 9:
+				
+				CoursesDao deletecourses1 = new CoursesDao();
+				System.out.println("To Delete Courses");
+				System.out.println("Enter the course id to delete ");
+				int courseId1=Integer.parseInt(scan.nextLine());
+				CourseDetails courses11=new CourseDetails(courseId1);
+				deletecourses1.deleteCourses(courses11);
 			
 			
 			case 10:
@@ -274,7 +284,7 @@ public class TestMain {
 				int TuitionFees=0;
 				int ExamFees=0;
 
-				FeesDao FeesDao = new FeesDao();
+				FeesDao feesdao = new FeesDao();
 				System.out.println("Fees Details");
 				System.out.println("Enter the Fees Id");
 				FeesId=Integer.parseInt(scan.nextLine());
@@ -288,30 +298,37 @@ public class TestMain {
 				ExamFees=Integer.parseInt(scan.nextLine());
 
 				FeesDetails feesList=new FeesDetails(FeesId,CourseId1,AdmissionFees,TuitionFees,ExamFees);
-				FeesDao.feesDetails(feesList);
+				feesdao.feesDetails(feesList);
 				break;
 
 		    
 			
-//			case 11:
-//				
-//			System.out.println("To Update fees details");
-//			System.out.println("Enter the user name ");
-//			String userName1=scan.nextLine();
-//			System.out.println("Enter your emailid");
-//			String userEmail1=scan.nextLine();
-//			System.out.println("Enter the user mobilenumber ");
-//			long userMobileNumber1=Long.parseLong(scan.nextLine());
-//			System.out.println("Enter the user password");
-//			String userPassword1=scan.nextLine();
+			case 11:
+				
+//				FeesDao updatefees = new FeesDao();
+//				System.out.println("To Update Course Details");
+//					
+//				System.out.println("Enter the course type");
+//			    String courseType=scan.nextLine();
+//				System.out.println("Enter the course name");
+//				String courseName=scan.nextLine();
+//				System.out.println("Enter the fees id");
+//				int feesId=Integer.parseInt(scan.nextLine());
 //
-//			FeesDetails feesdetails=new FeesDetails(userName1,userEmail1,userMobileNumber1,userPassword1);
-//			break;
+//				CourseDetails updatecourses=new CourseDetails(courseType,courseName,courseId);
+//				courses.updateCourses(updatecourses);
+//				break;
 				
-
 				
+			case 12:
 				
-
+				FeesDao deletefees1 = new FeesDao();
+				System.out.println("To Delete Fees List");
+				System.out.println("Enter the fees id to delete ");
+				int feesId=Integer.parseInt(scan.nextLine());
+				FeesDetails feesdetails11=new FeesDetails(feesId);
+				deletefees1.deleteFeesDetails(feesdetails11);
+				
 		    }
 		}
 		
@@ -338,7 +355,7 @@ public class TestMain {
 		int Pincode=0;
 		String State=null;
 		String Nationality=null;
-		ApplicationDao ApplicationDao = new ApplicationDao();
+		ApplicationDao applicationDetails = new ApplicationDao();
 		System.out.println("Details of Application");
 		System.out.println("Enter the User Id");
 		UserId=Integer.parseInt(scan.nextLine());
@@ -369,17 +386,38 @@ public class TestMain {
 		ApplicationDetails applicationdetails=new ApplicationDetails(UserId,StudentName,FatherName,DateofBirth,AadharNumber,SSLCMark,HSCMark,Address,City,Pincode,State,Nationality);
 		System.out.println(applicationdetails.getDateofBirth());
 		
-		ApplicationDao.insertApplication(applicationdetails);
+		applicationDetails.insertApplication(applicationdetails);
 		System.out.println("Applications details inserted successfully");
+		break;
+		
+		
+		case 2:
+			
+			System.out.println("To view all courses");
+			CoursesDao listCourses = new CoursesDao();
+			
+			List<CourseDetails> coursesList = listCourses.showAllCourses();
+			for(int i=0;i<coursesList.size();i++)
+			{
+			System.out.println(coursesList.get(i));
+			}
+			break;
+			
+			
+		case 3:
+			
+			System.out.println("To view all fees list");
+			FeesDao listFeesDetails = new FeesDao();
+			
+			List<FeesDetails> feesList = listFeesDetails.showAllFeesDetails();
+			for(int i=0;i<feesList.size();i++)
+			{
+			System.out.println(feesList.get(i));
+			}
+			break;
 	
 		
 	}
-//		String String1=UserDao.loginUser(Email,UserPassword);
-//		if(String1!=null)
-//		{
-//	    System.out.println("Login Successful");
-//		System.out.println("Welcome "+String1);
-//		}
 
 		}
 	}
@@ -387,105 +425,4 @@ public class TestMain {
 	}
 }
 
-	
-//	switch(choice) 
-	//	{
-//	case 4:
-//	{
-//	int UserId=0;
-//	String StudentName=null;
-//	String FatherName=null;
-//	int AadharNumber=0;
-//	int SSLCMark=0;
-//	int HSCMark=0;
-//	String Address=null;
-//	String City=null;
-//	int Pincode=0;
-//	String State=null;
-//	String Nationality=null;
-//	ApplicationDao ApplicationDao = new ApplicationDao();
-//	System.out.println("Details of Application");
-//	System.out.println("Enter the User Id");
-//	UserId=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the Student Name");
-//	StudentName=scan.nextLine();
-//	System.out.println("Enter the Father Name");
-//	FatherName=scan.nextLine();
-//    System.out.println("Enter the Date of Birth");
-//    String DOB=scan.nextLine();
-//    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//    Date DateofBirth = sdf.parse(DOB);
-//    System.out.println("Enter the Aadhar Number");
-//	AadharNumber=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the SSLC Mark");
-//	SSLCMark=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the HSC Mark");
-//	HSCMark=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the Address");
-//	Address=scan.nextLine();
-//	System.out.println("Enter the City");
-//	City=scan.nextLine();
-//	System.out.println("Enter the Pincode");
-//	Pincode=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the State");
-//	State=scan.nextLine();
-//	System.out.println("Enter the Nationality");
-//	Nationality=scan.nextLine();
-//	ApplicationDetails applicationdetails=new ApplicationDetails(UserId,StudentName,FatherName,DateofBirth,AadharNumber,SSLCMark,HSCMark,Address,City,Pincode,State,Nationality);
-//	ApplicationDao.insertApplication(applicationdetails);
-//	
-//	}
-//}
-//	
-//	switch(choice) 
-//	{
-//	case 5:
-//	{
-//	int CourseId=0;
-//	String CourseType=null;
-//	String CourseName=null;
-//
-//	CoursesDao CoursesDao = new CoursesDao();
-//	System.out.println("Details of Courses");
-//	System.out.println("Enter the Course Id");
-//	CourseId=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the Course Type");
-//	CourseType=scan.nextLine();
-//	System.out.println("Enter the Course Name");
-//	CourseName=scan.nextLine();
-//
-//	CourseDetails coursedetails=new CourseDetails(CourseId,CourseType,CourseName);
-//	CoursesDao.coursesDetails(coursedetails);
-//	
-//	}
-//}
-//	
-//	switch(choice) 
-//	{
-//	case 6:
-//	{
-//	int FeesId=0;
-//	int CourseId=0;
-//	int AdmissionFees=0;
-//	int TuitionFees=0;
-//	int ExamFees=0;
-//
-//	FeesDao FeesDao = new FeesDao();
-//	System.out.println("Fees Details");
-//	System.out.println("Enter the Fees Id");
-//	FeesId=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the Course Id");
-//	CourseId=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the AdmissionFees");
-//	AdmissionFees=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the TuitionFees");
-//	TuitionFees=Integer.parseInt(scan.nextLine());
-//	System.out.println("Enter the ExamFees");
-//	ExamFees=Integer.parseInt(scan.nextLine());
-//
-//	FeesDetails feesList=new FeesDetails(FeesId,CourseId,AdmissionFees,TuitionFees,ExamFees);
-//	FeesDao.feesDetails(feesList);
-//	
-//	}
-//}
 	
