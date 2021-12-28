@@ -13,7 +13,7 @@ import com.collegeadmission.model.ApplicationDetails;
 
 public class ApplicationDao {
 	
-	public static void insertApplication(ApplicationDetails applicationdetails) throws ClassNotFoundException, SQLException {
+	public void insertApplication(ApplicationDetails applicationdetails) throws ClassNotFoundException, SQLException {
 		
 		String formQuery = "insert into application_details(User_Id,Student_Name,Father_Name,Date_of_Birth,Aadhar_Number,SSLC_Mark,HSC_Mark,Address,City,Pincode,State,Nationality) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -26,7 +26,7 @@ public class ApplicationDao {
 		pstmt.setString(3,applicationdetails.getFatherName());
 		System.out.println(applicationdetails.getDateofBirth());
 		pstmt.setDate(4, new java.sql.Date(applicationdetails.getDateofBirth().getTime()));
-		pstmt.setInt(5,ApplicationDetails.getAadharNumber());
+		pstmt.setInt(5,applicationdetails.getAadharNumber());
 		pstmt.setInt(6,applicationdetails.getSslcMark());
 		pstmt.setInt(7,applicationdetails.getHscMark());
 		pstmt.setString(8,applicationdetails.getAddress());
@@ -44,8 +44,23 @@ public class ApplicationDao {
 
 	}
 	
+	public ResultSet showuser(int userid) throws Exception {
+		String viewuser = "select * from application_details where user_id in ?";
+		Connection con;
+
+		con = ConnectionUtil.getDBConnect();
+		PreparedStatement stmt = con.prepareStatement(viewuser);
+		stmt.setInt(1, userid);
+		ResultSet rs = stmt.executeQuery();
+
+		return rs;
+
+	}
+
+
 	
-	public static void updateApplication (ApplicationDetails applicationdetail) throws ClassNotFoundException, SQLException {
+	
+	public void updateApplication (ApplicationDetails applicationdetail) throws ClassNotFoundException, SQLException {
     	
     	String updateApplication="update application_details set student_name=?, father_name=?, date_of_birth=?, sslc_mark=?, hsc_mark=?, address=?, city=?, pincode=?, state=?, nationality=? where aadhar_number=?";
     	
@@ -62,7 +77,7 @@ public class ApplicationDao {
 		pstmt.setInt(8,applicationdetail.getPincode());
 		pstmt.setString(9,applicationdetail.getState());
 		pstmt.setString(10,applicationdetail.getNationality());
-		pstmt.setInt(11, ApplicationDetails.getAadharNumber());
+		pstmt.setInt(11, applicationdetail.getAadharNumber());
 		
 		int result=pstmt.executeUpdate();
 		System.out.println(result+ " is updated !!");
@@ -70,14 +85,14 @@ public class ApplicationDao {
 		con.close();
     }
 	
-	public static void deleteApplication (ApplicationDetails applicationdetails) throws ClassNotFoundException, SQLException {
+	public void deleteApplication (ApplicationDetails deleteapplicationdetails) throws ClassNotFoundException, SQLException {
 		
 		String del="delete from application_details where aadhar_number = ?";
 		
 		Connection con=ConnectionUtil.getDBConnect();
 		PreparedStatement ps=con.prepareStatement(del);
 		
-		ps.setInt(1,applicationdetails.getAadharNumber());
+		ps.setInt(1,deleteapplicationdetails.getAadharNumber());
 		int res=ps.executeUpdate();
 		if(res > 0) {
 		System.out.println(res + "is deleted");

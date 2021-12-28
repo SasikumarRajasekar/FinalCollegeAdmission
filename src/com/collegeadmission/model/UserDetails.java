@@ -61,13 +61,7 @@ package com.collegeadmission.model;
 			super();
 			// TODO Auto-generated constructor stub
 		}
-//		public UserDetails(int userId) {
-//			super();
-//			this.userName = userName;
-//			this.email = email;
-//			this.mobileNumber = mobileNumber;
-//			this.userPassword = userPassword;
-//		}
+
 		public UserDetails(String userName, String email, long mobileNumber, String userPassword) {
 			super();
 			this.userName = userName;

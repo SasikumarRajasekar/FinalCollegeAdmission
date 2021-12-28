@@ -166,11 +166,12 @@ public class TestMain {
 				
 			    ApplicationDao application = new ApplicationDao();
 				System.out.println("To Update Application Details");
+				
 				System.out.println("Enter the student name ");
-				String studentName1=scan.nextLine();
+				String studName=scan.nextLine();
 				
 				System.out.println("Enter the father's name");
-				String fatherName1=scan.nextLine();
+				String fathername=scan.nextLine();
 				
 				System.out.println("Enter the date of birth ");
 				String dateofBirth=scan.nextLine();
@@ -179,13 +180,13 @@ public class TestMain {
 				Date DateofBirth = sdf.parse(dateofBirth);
 				
 				System.out.println("Enter the SSLC Mark");
-				int sslcMark1=Integer.parseInt(scan.nextLine());
+				int sslcmark=Integer.parseInt(scan.nextLine());
 				
 				System.out.println("Enter the HSC Mark");
-				int hscMark1=Integer.parseInt(scan.nextLine());
+				int hscmark=Integer.parseInt(scan.nextLine());
 				
 				System.out.println("Enter the address");
-				String address1=scan.nextLine();
+				String adrss=scan.nextLine();
 				
 				System.out.println("Enter the city");
 				String city1=scan.nextLine();
@@ -202,7 +203,7 @@ public class TestMain {
 				System.out.println("Enter the aadhar number");
      			int aadharNumber1=Integer.parseInt(scan.nextLine());
 				
-				ApplicationDetails applicationdetails=new ApplicationDetails(studentName1,fatherName1,dateofBirth,sslcMark1,hscMark1,address1,city1,pincode1,state1,nationality1,aadharNumber1);
+				ApplicationDetails applicationdetails=new ApplicationDetails(studName, fathername, DateofBirth, sslcmark, hscmark, adrss, city1, pincode1, state1, nationality1, aadharNumber1);
 				application.updateApplication(applicationdetails); 
 				System.out.println("Application details updated");
 				break;
@@ -211,8 +212,8 @@ public class TestMain {
 				ApplicationDao application1 = new ApplicationDao();
 				System.out.println("To Delete Application");
 				System.out.println("Enter the aadhar number to delete ");
-				int aadharNumber=Integer.parseInt(scan.nextLine());
-				ApplicationDetails applicationdetails1=new ApplicationDetails(aadharNumber);
+				int AadharNo=Integer.parseInt(scan.nextLine());
+				ApplicationDetails applicationdetails1=new ApplicationDetails(AadharNo);
 				application1.deleteApplication(applicationdetails1);
 				break;
 				
@@ -390,8 +391,11 @@ public class TestMain {
 		System.out.println("Applications details inserted successfully");
 		break;
 		
-		
 		case 2:
+			
+			
+			
+		case 3:
 			
 			System.out.println("To view all courses");
 			CoursesDao listCourses = new CoursesDao();
@@ -404,7 +408,7 @@ public class TestMain {
 			break;
 			
 			
-		case 3:
+		case 4:
 			
 			System.out.println("To view all fees list");
 			FeesDao listFeesDetails = new FeesDao();

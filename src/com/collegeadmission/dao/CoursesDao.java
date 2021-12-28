@@ -33,7 +33,7 @@ public class CoursesDao {
 	
 	public void updateCourses (CourseDetails coursedetails) throws ClassNotFoundException, SQLException {
     	
-    	String update="update course_details set course_type=?, course_name=? where course_id=?";
+    	String update="update courses_details set course_type=?, course_name=? where course_id=?";
     	
     	Connection con=ConnectionUtil.getDBConnect();
 		PreparedStatement ps=con.prepareStatement(update);
@@ -46,10 +46,11 @@ public class CoursesDao {
 		System.out.println(result+ " is updated !!");
 		ps.close();
 		con.close();
+	
     }
 
 	
-	public static void deleteCourses (CourseDetails coursedetails) throws ClassNotFoundException, SQLException {
+	public void deleteCourses (CourseDetails coursedetails) throws ClassNotFoundException, SQLException {
 		
 		String del="delete from courses_details where course_id=?";
 		
